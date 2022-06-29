@@ -52,10 +52,43 @@ p exponent_2(2, 256)
 p "_________"
 puts
 
+def deep_dup(data)
+    return [data.dup] if !data.is_a?(Array)
+
+    data.each {|ele| deep_dup(ele)}   
+end
+
+p deep_dup([
+    ["nuts", "bolts", "washers"],
+    ["capacitors", "resistors", "inductors"]
+  ])
+p [1, [2], [3, [4]]].object_id
+p deep_dup([1, [2], [3, [4]]])
+p [1, [2], [3, [4]]].object_id
+p "_________"
+puts
+
+#[1,2,3,4,5,6,7,8,9]
+#[0,1,1,2,3,5,8,13,21]
+def fibonacci(n)
+    return nil if n < 1 
+    return [0] if n == 1
+    return [0,1] if n == 2
+
+    fib = fibonacci(n-1)
+    fib = fib + fib
+
+end
 
 
-
-
-
+p fibonacci(0)
+p fibonacci(1)
+p fibonacci(2)
+p fibonacci(3)
+p fibonacci(4)
+p fibonacci(5)
+p fibonacci(10)
+p "_________"
+puts
 
 
