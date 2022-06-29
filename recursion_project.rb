@@ -76,12 +76,9 @@ def fibonacci(n)
     return [0,1] if n == 2
 
     fib = fibonacci(n-1)
-    fib = fib + fib
+    fib << fib[-1] + fib[-2]
 
 end
-
-
-p fibonacci(0)
 p fibonacci(1)
 p fibonacci(2)
 p fibonacci(3)
@@ -90,5 +87,68 @@ p fibonacci(5)
 p fibonacci(10)
 p "_________"
 puts
+
+def bsearch(array, target)
+    
+    return nil if array.empty?
+    mid = array.length/2
+    return mid if array[mid] == target
+    if target > array[mid]
+        b = bsearch(array[mid+1..-1],target)
+        if b.nil?
+            return nil
+        else
+            return b + mid + 1
+        end
+    else
+        bsearch(array[0...mid],target)
+    end
+end
+
+p bsearch([1, 2, 3], 1) # => 0
+p bsearch([2, 3, 4, 5], 3) # => 1
+p bsearch([2, 4, 6, 8, 10], 6) # => 2
+p bsearch([1, 3, 4, 5, 9], 5) # => 3
+p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+p "_________"
+puts
+
+
+def merge_sort(array) #[1]
+    return [] if array.length == 0
+    return array if array.length == 1
+
+    mid = array.length / 2 
+    left = array[0...mid]
+    right = array[mid..-1]
+    left_sort = merge_sort(left)
+    right_sort = merge_sort(right)
+    merge(left_sort, right_sort)
+end
+
+def merge(left, right)
+    merged = []
+    until left.length == 0 || right.length == 0
+        if left[0] < right[0]
+            merged << left.shift
+        else
+            merged << right.shift
+        end
+    end
+    merged + left + right
+end
+
+
+p merge_sort([])
+p merge_sort([5])
+p merge_sort([5,3]) 
+p merge_sort([38,27,43,3,9,82,10])
+
+
+
+
+
 
 
