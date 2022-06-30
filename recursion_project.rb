@@ -145,10 +145,49 @@ p merge_sort([])
 p merge_sort([5])
 p merge_sort([5,3]) 
 p merge_sort([38,27,43,3,9,82,10])
+p "_________"
+puts
 
 
 
+def subsets(arr)
+    return [[]] if arr.empty?
+    ending = arr.pop
+    prev = subsets(arr)
+    new_arr = []
+    prev.each do |subarr|
+        new_arr << subarr + [ending]
+    end
+    prev + new_arr
+end
+
+
+p subsets([]) # => [[]]
+p subsets([1]) # => [[], [1]]
+p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
+p subsets([1, 2, 3]) # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
+p "_________"
+puts
 
 
 
+def permutations(array)
+    return [[]] if array.empty?
+    ending = arr.pop
+    #interate over each subarr 
+        #interate over (0..arr.length)
+        #add ending at each index in subarr -> creating a new subarr each time
 
+#   subsets(arr).each do |subarr|
+#     subarr.each do |ele|
+        
+
+end
+
+p permutations([1, 2, 3]) # => [[1, 2, 3], [1, 3, 2],
+                        #     [2, 1, 3], [2, 3, 1],
+                        #     [3, 1, 2], [3, 2, 1]]
+
+# [1, 2, 3].permutation.to_a  # => [[1, 2, 3], [1, 3, 2],
+#                             #     [2, 1, 3], [2, 3, 1],
+#                             #     [3, 1, 2], [3, 2, 1]]
